@@ -132,8 +132,8 @@ for sp in $SPECIES # general loop
 		echo "Chromatin acc. IP/INPUT not available, just IPs"
 		# peak calling
 		NAMEp=$(basename $(echo $OPENp | cut -d'_' -f1,2,3,4,5,8))
-		macs2 callpeak -t $OPENp -f BAM -n "${NAMEp}_Single_noInput_narrow" --SPMR -B --keep-dup all --nomodel --shift 75 --extsize 150 -g $GSIZE --outdir $HOME/5.Peaks/$NAMEp/
-		macs2 callpeak -t $OPENp -f BAM -n "${NAMEp}_Single_noInput_broad" --SPMR -B --broad --nolambda --keep-dup all --nomodel --shift 75 --extsize 150 -g $GSIZE --outdir $HOME/5.Peaks/$NAMEp/
+		macs2 callpeak -t $OPENp -f BAM -n "${NAMEp}_Single_noInput_narrow" --SPMR -B --keep-dup all --nomodel --shift -75 --extsize 150 -g $GSIZE --outdir $HOME/5.Peaks/$NAMEp/
+		macs2 callpeak -t $OPENp -f BAM -n "${NAMEp}_Single_noInput_broad" --SPMR -B --broad --nolambda --keep-dup all --nomodel --shift -75 --extsize 150 -g $GSIZE --outdir $HOME/5.Peaks/$NAMEp/
 		# signal tracks: FE and log10FE + 0.1
 		macs2 bdgcmp -t $HOME/5.Peaks/$NAMEp/"${NAMEp}_Single_noInput_narrow_treat_pileup.bdg" -c $HOME/5.Peaks/$NAMEp/"${NAMEp}_Single_noInput_narrow_control_lambda.bdg" -p 0.1 -m logFE -o $HOME/6.SignalTracks/"${NAMEp}_Single_noInput_narrow_signaltrack_logFE05.bdg"
 		macs2 bdgcmp -t $HOME/5.Peaks/$NAMEp/"${NAMEp}_Single_noInput_broad_treat_pileup.bdg" -c $HOME/5.Peaks/$NAMEp/"${NAMEp}_Single_noInput_broad_control_lambda.bdg" -p 0.1 -m logFE -o $HOME/6.SignalTracks/"${NAMEp}_Single_noInput_broad_signaltrack_logFE05.bdg"
@@ -151,8 +151,8 @@ for sp in $SPECIES # general loop
 		echo "Chromatin acc. IP/INPUT available"
 		# peak calling
 		NAMEp=$(basename $(echo $IPp | cut -d'_' -f1,2,3,4,5,8))
-		macs2 callpeak -t $IPp -c $INPUTp -f BAM -n "${NAMEp}_Single_yesInput_narrow" --SPMR -B --keep-dup all --nomodel --shift 75 --extsize 150 -g $GSIZE --outdir $HOME/5.Peaks/$NAMEp/
-		macs2 callpeak -t $IPp -c $INPUTp -f BAM -n "${NAMEp}_Single_yesInput_broad" --SPMR -B --broad --keep-dup all --nomodel --shift 75 --extsize 150 -g $GSIZE --outdir $HOME/5.Peaks/$NAMEp/
+		macs2 callpeak -t $IPp -c $INPUTp -f BAM -n "${NAMEp}_Single_yesInput_narrow" --SPMR -B --keep-dup all --nomodel --shift -75 --extsize 150 -g $GSIZE --outdir $HOME/5.Peaks/$NAMEp/
+		macs2 callpeak -t $IPp -c $INPUTp -f BAM -n "${NAMEp}_Single_yesInput_broad" --SPMR -B --broad --keep-dup all --nomodel --shift -75 --extsize 150 -g $GSIZE --outdir $HOME/5.Peaks/$NAMEp/
 		# signal tracks: FE and log10FE + 0.1
 		macs2 bdgcmp -t $HOME/5.Peaks/$NAMEp/"${NAMEp}_Single_yesInput_narrow_treat_pileup.bdg" -c $HOME/5.Peaks/$NAMEp/"${NAMEp}_Single_yesInput_narrow_control_lambda.bdg" -p 0.1 -m logFE -o $HOME/6.SignalTracks/"${NAMEp}_Single_yesInput_narrow_signaltrack_logFE05.bdg"
 		macs2 bdgcmp -t $HOME/5.Peaks/$NAMEp/"${NAMEp}_Single_yesInput_broad_treat_pileup.bdg" -c $HOME/5.Peaks/$NAMEp/"${NAMEp}_Single_yesInput_broad_control_lambda.bdg" -p 0.1 -m logFE -o $HOME/6.SignalTracks/"${NAMEp}_Single_yesInput_broad_signaltrack_logFE05.bdg"
